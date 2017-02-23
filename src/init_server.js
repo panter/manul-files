@@ -1,5 +1,6 @@
-import initUploadDirectives from './init_upload_directives';
 import _ from 'lodash';
+import initUploadDirectives from './init_upload_directives';
+
 
 export default ({ Slingshot, Directives,
   bucket = 'aws-bucket',

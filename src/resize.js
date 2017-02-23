@@ -1,9 +1,9 @@
-import { Meteor } from 'meteor/meteor';
+
 
 import getOrientation from './get_orientation';
 import rotate from './rotate';
-
-if (Meteor.isClient) {
+/* global Meteor*/
+if (Meteor && Meteor.isClient) {
   require('blueimp-canvas-to-blob'); // polyfill
 }
 
@@ -14,9 +14,9 @@ export default (file, { maxDimension = 640, quality = 0.6 } = {}, onResult) => {
     // thx http://stackoverflow.com/questions/23945494/use-html5-to-resize-an-image-before-upload
     // Load the image
     const reader = new global.FileReader();
-    reader.onload = function (readerEvent) {
+    reader.onload = (readerEvent) => {
       const image = new global.Image();
-      image.onload = function (imageEvent) {
+      image.onload = () => {
                   // Resize the image
         const canvas = global.document.createElement('canvas');
         let width = image.width;

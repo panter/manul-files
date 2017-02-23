@@ -38,8 +38,8 @@
     "compile": "npm run lint && babel src -s -d dist",
     "lint": "eslint src/**.js"
   },
-  "main": "./dist/manul-files.js",
+  "main": "./dist/index.js",
   "dependencies": {
-
+    "blueimp-canvas-to-blob": "^3.6.0"
   }
 }

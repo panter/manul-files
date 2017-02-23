@@ -1,21 +1,20 @@
-import { useDeps, composeAll, composeWithTracker, compose } from 'mantra-core';
+import { useDeps, composeAll, composeWithTracker } from 'mantra-core';
 import React from 'react';
 import _ from 'lodash';
 
-export const depsMapper = (context, actions) => ({
+export const depsMapper = context => ({
   context: () => context,
 });
 
-
-export const composer = ({ context, uploader }, onData) => {
-  const { Alerts } = context();
-  const showFileError = (message, error) => Alerts.show({ type: 'error', message, error });
+export const composer = (
+  { uploader, onUploadError = _.noop, onUploadSuccess = _.noop }
+  , onData) => {
   const upload = (file, callback) => {
     uploader.send(file, (error, url) => {
       if (error) {
-        showFileError('upload.errors.couldNotUpload', error);
+        onUploadError(error);
       } else {
-        Alerts.show({ message: 'upload.success' });
+        onUploadSuccess({ file, url });
       }
       callback(error, url);
     });
@@ -23,7 +22,7 @@ export const composer = ({ context, uploader }, onData) => {
   const progress = Math.round(uploader.progress() * 100);
   const status = uploader.status();
   // we use showFileError in FileField to indicate files that were already rejected by the dropzone
-  onData(null, { showFileError, upload, progress, status });
+  onData(null, { upload, progress, status });
 };
 
 export const composeWithUploader = () => (C) => {

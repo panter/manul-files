@@ -1,5 +1,5 @@
-import initUploadDirectives from './init_upload_directives';
 import _ from 'lodash';
+import initUploadDirectives from './init_upload_directives';
 import resize from './resize';
 
 const RESIZABLE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'];
