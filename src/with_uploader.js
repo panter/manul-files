@@ -7,17 +7,30 @@ export const depsMapper = context => ({
 });
 
 export const composer = (
-  { uploader, onUploadError = _.noop, onUploadSuccess = _.noop }
+  { context, uploader, alertsNamespace = 'upload', onUploadError = _.noop, onUploadSuccess = _.noop }
   , onData) => {
-  const upload = (file, callback) => {
-    uploader.send(file, (error, url) => {
+  const { Alerts } = context();
+  const getUploadCallback = (file, callback) => {
+    // check if Alerts has support for handleCallback
+    if (Alerts && Alerts.handleCallback) {
+      return Alerts.handleCallback(alertsNamespace, {
+        props: () => ({ file }),
+      },
+        callback,
+      );
+    }
+    // legacy
+    return (error, url) => {
       if (error) {
         onUploadError(error);
       } else {
         onUploadSuccess({ file, url });
       }
       callback(error, url);
-    });
+    };
+  };
+  const upload = (file, callback) => {
+    uploader.send(file, getUploadCallback(file, callback));
   };
   const progress = Math.round(uploader.progress() * 100);
   const status = uploader.status();

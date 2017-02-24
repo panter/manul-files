@@ -2,10 +2,8 @@
 
 import getOrientation from './get_orientation';
 import rotate from './rotate';
-/* global Meteor*/
-if (Meteor && Meteor.isClient) {
-  require('blueimp-canvas-to-blob'); // polyfill
-}
+
+require('blueimp-canvas-to-blob'); // polyfill
 
 export default (file, { maxDimension = 640, quality = 0.6 } = {}, onResult) => {
   // get orientation first

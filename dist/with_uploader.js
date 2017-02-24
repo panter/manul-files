@@ -36,21 +36,40 @@ var depsMapper = function depsMapper(_context) {
 
 exports.depsMapper = depsMapper;
 var composer = function composer(_ref, onData) {
+  var context = _ref.context;
   var uploader = _ref.uploader;
+  var _ref$alertsNamespace = _ref.alertsNamespace;
+  var alertsNamespace = _ref$alertsNamespace === undefined ? 'upload' : _ref$alertsNamespace;
   var _ref$onUploadError = _ref.onUploadError;
   var onUploadError = _ref$onUploadError === undefined ? _lodash2['default'].noop : _ref$onUploadError;
   var _ref$onUploadSuccess = _ref.onUploadSuccess;
   var onUploadSuccess = _ref$onUploadSuccess === undefined ? _lodash2['default'].noop : _ref$onUploadSuccess;
 
-  var upload = function upload(file, callback) {
-    uploader.send(file, function (error, url) {
+  var _context2 = context();
+
+  var Alerts = _context2.Alerts;
+
+  var getUploadCallback = function getUploadCallback(file, callback) {
+    // check if Alerts has support for handleCallback
+    if (Alerts && Alerts.handleCallback) {
+      return Alerts.handleCallback(alertsNamespace, {
+        props: function props() {
+          return { file: file };
+        }
+      }, callback);
+    }
+    // legacy
+    return function (error, url) {
       if (error) {
         onUploadError(error);
       } else {
         onUploadSuccess({ file: file, url: url });
       }
       callback(error, url);
-    });
+    };
+  };
+  var upload = function upload(file, callback) {
+    uploader.send(file, getUploadCallback(file, callback));
   };
   var progress = Math.round(uploader.progress() * 100);
   var status = uploader.status();
