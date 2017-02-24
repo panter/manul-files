@@ -3,7 +3,12 @@
 import getOrientation from './get_orientation';
 import rotate from './rotate';
 
-require('blueimp-canvas-to-blob'); // polyfill
+
+try {
+  require('blueimp-canvas-to-blob'); // polyfill
+} catch (e) {
+  //
+}
 
 export default (file, { maxDimension = 640, quality = 0.6 } = {}, onResult) => {
   // get orientation first

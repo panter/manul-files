@@ -14,9 +14,10 @@ var _rotate = require('./rotate');
 
 var _rotate2 = _interopRequireDefault(_rotate);
 
-/* global Meteor*/
-if (Meteor && Meteor.isClient) {
+try {
   require('blueimp-canvas-to-blob'); // polyfill
+} catch (e) {
+  //
 }
 
 exports['default'] = function (file, _x, onResult) {

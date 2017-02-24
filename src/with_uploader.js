@@ -32,7 +32,8 @@ export const composer = (
   const upload = (file, callback) => {
     uploader.send(file, getUploadCallback(file, callback));
   };
-  const progress = Math.round(uploader.progress() * 100);
+  const progressDecimal = !_.isNaN(uploader.progress()) ? uploader.progress() : 0;
+  const progress = Math.round(progressDecimal * 100);
   const status = uploader.status();
   // we use showFileError in FileField to indicate files that were already rejected by the dropzone
   onData(null, { upload, progress, status });
