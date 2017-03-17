@@ -1,10 +1,9 @@
 'use strict';
 
-var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
-
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getOrientation = exports.withUploader = exports.UploadClient = exports.initServer = exports.resize = exports.rotate = undefined;
 
 var _upload_client = require('./upload_client');
 
@@ -30,10 +29,12 @@ var _get_orientation = require('./get_orientation');
 
 var _get_orientation2 = _interopRequireDefault(_get_orientation);
 
-exports.rotate = _rotate2['default'];
-exports.resize = _resize2['default'];
-exports.initServer = _init_server2['default'];
-exports.UploadClient = _upload_client2['default'];
-exports.withUploader = _with_uploader2['default'];
-exports.getOrientation = _get_orientation2['default'];
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.rotate = _rotate2.default;
+exports.resize = _resize2.default;
+exports.initServer = _init_server2.default;
+exports.UploadClient = _upload_client2.default;
+exports.withUploader = _with_uploader2.default;
+exports.getOrientation = _get_orientation2.default;
 //# sourceMappingURL=index.js.map
