@@ -1,11 +1,11 @@
-/** thx http://stackoverflow.com/questions/7584794/accessing-jpeg-exif-rotation-data-in-javascript-on-the-client-side **/
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports["default"] = function (file, callback) {
+/** thx http://stackoverflow.com/questions/7584794/accessing-jpeg-exif-rotation-data-in-javascript-on-the-client-side **/
+exports.default = function (file, callback) {
   /* global FileReader*/
   /* eslint no-plusplus: 0*/
   /* eslint no-cond-assign: 0 */
@@ -37,6 +37,4 @@ exports["default"] = function (file, callback) {
   };
   reader.readAsArrayBuffer(file);
 };
-
-module.exports = exports["default"];
 //# sourceMappingURL=get_orientation.js.map

@@ -1,12 +1,11 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports['default'] = rotate;
-
+exports.default = rotate;
 function rotate(canvas, width, height) {
-  var orientation = arguments.length <= 3 || arguments[3] === undefined ? 1 : arguments[3];
+  var orientation = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
 
   /* eslint no-param-reassign: 0*/
   var ctx = canvas.getContext('2d');
@@ -58,6 +57,4 @@ function rotate(canvas, width, height) {
       break;
   }
 }
-
-module.exports = exports['default'];
 //# sourceMappingURL=rotate.js.map
