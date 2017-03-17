@@ -1,7 +1,7 @@
 {
   "name": "@panter/manul-files",
   "description": "",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Marco Wettstein",
     "email": "maw@panter.ch",
@@ -20,8 +20,12 @@
     "react": "^15.0.0"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
+    "babel-cli": "^6.24.0",
     "babel-eslint": "^6.1.2",
+    "babel-plugin-lodash": "^3.2.11",
+    "babel-preset-es2015": "6.x.x",
+    "babel-preset-react": "6.x.x",
+    "babel-preset-stage-2": "6.x.x",
     "babel-plugin-syntax-trailing-function-commas": "^6.20.0",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",

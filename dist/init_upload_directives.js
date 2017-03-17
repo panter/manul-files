@@ -1,24 +1,26 @@
 'use strict';
 
-var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
-
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _lodash = require('lodash');
+var _pick2 = require('lodash/pick');
 
-var _lodash2 = _interopRequireDefault(_lodash);
+var _pick3 = _interopRequireDefault(_pick2);
 
-exports['default'] = function (_ref) {
-  var Slingshot = _ref.Slingshot;
-  var Directives = _ref.Directives;
+var _keys2 = require('lodash/keys');
 
-  _lodash2['default'].keys(Directives).forEach(function (name) {
+var _keys3 = _interopRequireDefault(_keys2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (_ref) {
+  var Slingshot = _ref.Slingshot,
+      Directives = _ref.Directives;
+
+  (0, _keys3.default)(Directives).forEach(function (name) {
     var directive = Directives[name];
-    Slingshot.fileRestrictions(name, _lodash2['default'].pick(directive.fileRestrictions, ['maxSize', 'allowedFileTypes', 'authorize']));
+    Slingshot.fileRestrictions(name, (0, _pick3.default)(directive.fileRestrictions, ['maxSize', 'allowedFileTypes', 'authorize']));
   });
 };
-
-module.exports = exports['default'];
 //# sourceMappingURL=init_upload_directives.js.map
