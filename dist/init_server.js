@@ -4,11 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _keys2 = require('lodash/keys');
 
 var _keys3 = _interopRequireDefault(_keys2);
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _init_upload_directives = require('./init_upload_directives');
 
@@ -36,7 +38,7 @@ exports.default = function (_ref) {
   (0, _keys3.default)(Directives).forEach(function (name) {
     var server = Directives[name].server;
 
-    Slingshot.createDirective(name, Slingshot.S3Storage, _extends({
+    Slingshot.createDirective(name, Slingshot.S3Storage, (0, _extends3.default)({
       bucket: bucket,
       acl: acl,
       region: region,
