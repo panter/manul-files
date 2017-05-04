@@ -4,6 +4,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
 var _isFunction2 = require('lodash/isFunction');
 
 var _isFunction3 = _interopRequireDefault(_isFunction2);
@@ -16,8 +24,6 @@ var _noop2 = require('lodash/noop');
 
 var _noop3 = _interopRequireDefault(_noop2);
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _init_upload_directives = require('./init_upload_directives');
 
 var _init_upload_directives2 = _interopRequireDefault(_init_upload_directives);
@@ -27,8 +33,6 @@ var _resize = require('./resize');
 var _resize2 = _interopRequireDefault(_resize);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var RESIZABLE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'];
 
@@ -40,8 +44,7 @@ var UploadClientService = function () {
       resizeQuality: 0.6,
       onAfterUpload: _noop3.default
     };
-
-    _classCallCheck(this, UploadClientService);
+    (0, _classCallCheck3.default)(this, UploadClientService);
 
     this.Slingshot = Slingshot;
     this.Directives = Directives;
@@ -49,11 +52,19 @@ var UploadClientService = function () {
     (0, _init_upload_directives2.default)({ Slingshot: Slingshot, Directives: Directives });
   }
 
-  _createClass(UploadClientService, [{
+  (0, _createClass3.default)(UploadClientService, [{
     key: 'shouldResize',
-    value: function shouldResize(directiveName, _ref2) {
-      var size = _ref2.size,
-          type = _ref2.type;
+    value: function shouldResize(directiveName, file) {
+      // when taking pictures from cordova camera plugin,
+      // you get a pseudo-file object which fails on slingshot
+      // see https://github.com/CulturalMe/meteor-slingshot/issues/49
+      // but resizing image with canvas work.
+      // we detect these fake Files by checking if their prototype is Blob
+      if (!(file instanceof global.Blob)) {
+        return true;
+      }
+      var size = file.size,
+          type = file.type;
       var fileRestrictions = this.Directives[directiveName].fileRestrictions;
 
       if (!fileRestrictions.maxSize || fileRestrictions.maxSize >= size) {
@@ -112,7 +123,6 @@ var UploadClientService = function () {
       return uploader;
     }
   }]);
-
   return UploadClientService;
 }();
 

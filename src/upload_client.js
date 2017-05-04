@@ -16,7 +16,16 @@ export default class UploadClientService {
     initUploadDirectives({ Slingshot, Directives });
   }
 
-  shouldResize(directiveName, { size, type }) {
+  shouldResize(directiveName, file) {
+    // when taking pictures from cordova camera plugin,
+    // you get a pseudo-file object which fails on slingshot
+    // see https://github.com/CulturalMe/meteor-slingshot/issues/49
+    // but resizing image with canvas work.
+    // we detect these fake Files by checking if their prototype is Blob
+    if (!(file instanceof global.Blob)) {
+      return true;
+    }
+    const { size, type } = file;
     const { fileRestrictions } = this.Directives[directiveName];
     if (!fileRestrictions.maxSize || fileRestrictions.maxSize >= size) {
       return false;
