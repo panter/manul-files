@@ -72,7 +72,7 @@ Meteor.startup(() => {
 In your context.js, instantiate a new upload instance and add it to the context:
 
 ```
-
+import { Slingshot } from 'meteor/edgee:slingshot';
 import Directives from '/lib/slingshot_directives';
 
 // ...
