@@ -1,5 +1,6 @@
-import { useDeps, composeAll, composeWithTracker } from 'mantra-core';
+import { useDeps, composeAll, composeWithTracker } from 'manul-mantra-core';
 import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 export const depsMapper = context => ({
@@ -75,7 +76,7 @@ export const composeWithUploader = () => (C) => {
     }
   };
   WithUploader.contextTypes = {
-    uniforms: React.PropTypes.object,
+    uniforms: PropTypes.object,
   };
 
   WithUploader.displayName = `withUploader(${C.displayName})`;

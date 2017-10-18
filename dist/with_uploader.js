@@ -16,11 +16,15 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-var _mantraCore = require('mantra-core');
+var _manulMantraCore = require('manul-mantra-core');
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _lodash = require('lodash');
 
@@ -71,7 +75,8 @@ var composer = function composer(_ref, onData) {
   var upload = function upload(file, callback) {
     uploader.send(file, getUploadCallback(file, callback));
   };
-  var progress = Math.round(uploader.progress() * 100);
+  var progressDecimal = !_lodash2['default'].isNaN(uploader.progress()) ? uploader.progress() : 0;
+  var progress = Math.round(progressDecimal * 100);
   var status = uploader.status();
   // we use showFileError in FileField to indicate files that were already rejected by the dropzone
   onData(null, { upload: upload, progress: progress, status: status });
@@ -114,7 +119,7 @@ var composeWithUploader = function composeWithUploader() {
         value: function render() {
           var props = this.props;
 
-          var CWithTracker = (0, _mantraCore.composeWithTracker)(composer)(C);
+          var CWithTracker = (0, _manulMantraCore.composeWithTracker)(composer)(C);
           var fileRestrictions = this.directive.fileRestrictions;
 
           return _react2['default'].createElement(CWithTracker, _extends({}, props, {
@@ -127,7 +132,7 @@ var composeWithUploader = function composeWithUploader() {
       return WithUploader;
     })(_react2['default'].Component);
     WithUploader.contextTypes = {
-      uniforms: _react2['default'].PropTypes.object
+      uniforms: _propTypes2['default'].object
     };
 
     WithUploader.displayName = 'withUploader(' + C.displayName + ')';
@@ -139,6 +144,6 @@ var composeWithUploader = function composeWithUploader() {
 exports.composeWithUploader = composeWithUploader;
 
 exports['default'] = function (C) {
-  return (0, _mantraCore.composeAll)(composeWithUploader(), (0, _mantraCore.useDeps)(depsMapper))(C);
+  return (0, _manulMantraCore.composeAll)(composeWithUploader(), (0, _manulMantraCore.useDeps)(depsMapper))(C);
 };
 //# sourceMappingURL=with_uploader.js.map
