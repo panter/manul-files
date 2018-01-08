@@ -1,4 +1,4 @@
-import { useDeps, composeAll, composeWithTracker } from 'manul-mantra-core';
+import { useDeps, composeAll, composeWithTracker } from '@storybook/mantra-core';
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';

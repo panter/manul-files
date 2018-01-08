@@ -16,7 +16,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-var _manulMantraCore = require('manul-mantra-core');
+var _storybookMantraCore = require('@storybook/mantra-core');
 
 var _react = require('react');
 
@@ -119,7 +119,7 @@ var composeWithUploader = function composeWithUploader() {
         value: function render() {
           var props = this.props;
 
-          var CWithTracker = (0, _manulMantraCore.composeWithTracker)(composer)(C);
+          var CWithTracker = (0, _storybookMantraCore.composeWithTracker)(composer)(C);
           var fileRestrictions = this.directive.fileRestrictions;
 
           return _react2['default'].createElement(CWithTracker, _extends({}, props, {
@@ -144,6 +144,6 @@ var composeWithUploader = function composeWithUploader() {
 exports.composeWithUploader = composeWithUploader;
 
 exports['default'] = function (C) {
-  return (0, _manulMantraCore.composeAll)(composeWithUploader(), (0, _manulMantraCore.useDeps)(depsMapper))(C);
+  return (0, _storybookMantraCore.composeAll)(composeWithUploader(), (0, _storybookMantraCore.useDeps)(depsMapper))(C);
 };
 //# sourceMappingURL=with_uploader.js.map
