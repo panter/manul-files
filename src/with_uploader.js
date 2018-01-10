@@ -3,7 +3,7 @@ import { useDeps, composeAll } from '@storybook/mantra-core';
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { composeWithTracker } from './composeWithTracker';
+import composeWithTracker from './composeWithTracker';
 
 export const depsMapper = context => ({
   context: () => context
