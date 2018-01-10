@@ -41,11 +41,15 @@ var _noop2 = require('lodash/noop');
 
 var _noop3 = _interopRequireDefault(_noop2);
 
-var _mantraCore = require('mantra-core');
+var _mantraCore = require('@storybook/mantra-core');
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -146,7 +150,7 @@ var composeWithUploader = exports.composeWithUploader = function composeWithUplo
       return WithUploader;
     }(_react2.default.Component);
     WithUploader.contextTypes = {
-      uniforms: _react2.default.PropTypes.object
+      uniforms: _propTypes2.default.object
     };
 
     WithUploader.displayName = 'withUploader(' + C.displayName + ')';
