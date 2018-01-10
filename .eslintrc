@@ -18,7 +18,8 @@
   ],
   "extends": [
     "airbnb",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "prettier"
   ],
   "rules": {
     "global-require": 0,

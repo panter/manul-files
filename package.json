@@ -14,12 +14,13 @@
   },
   "bugs": "https://github.com/panter/manul-files/issues",
   "peerDependencies": {
+    "@storybook/mantra-core": "*",
     "babel-runtime": "*",
     "lodash": "*",
-    "@storybook/mantra-core": "*",
     "react": "*"
   },
   "devDependencies": {
+    "@storybook/mantra-core": "*",
     "babel-cli": "^6.24.0",
     "babel-eslint": "^6.1.2",
     "babel-plugin-lodash": "^3.2.11",
@@ -28,18 +29,18 @@
     "babel-preset-es2015": "6.x.x",
     "babel-preset-react": "6.x.x",
     "babel-preset-stage-2": "6.x.x",
+    "babel-runtime": "*",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-meteor": "^4.0.1",
     "eslint-plugin-react": "^6.8.0",
     "glob": "^5.0.15",
-    "tape": "^4.2.2",
-    "babel-runtime": "*",
     "lodash": "^4.0.0",
-    "@storybook/mantra-core": "*",
-    "react": "^16.0.0"
+    "react": "^16.0.0",
+    "tape": "^4.2.2"
   },
   "scripts": {
     "prepublish": "npm run compile",
@@ -49,7 +50,7 @@
   },
   "main": "./dist/index.js",
   "dependencies": {
-    "prop-types": "^15.6.0",
-    "blueimp-canvas-to-blob": "^3.6.0"
+    "blueimp-canvas-to-blob": "^3.6.0",
+    "prop-types": "^15.6.0"
   }
 }

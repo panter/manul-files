@@ -51,6 +51,8 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _composeWithTracker = require('./composeWithTracker');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var depsMapper = exports.depsMapper = function depsMapper(_context) {
@@ -138,7 +140,7 @@ var composeWithUploader = exports.composeWithUploader = function composeWithUplo
         value: function render() {
           var props = this.props;
 
-          var CWithTracker = (0, _mantraCore.composeWithTracker)(composer)(C);
+          var CWithTracker = (0, _composeWithTracker.composeWithTracker)(composer)(C);
           var fileRestrictions = this.directive.fileRestrictions;
 
           return _react2.default.createElement(CWithTracker, (0, _extends3.default)({}, props, {
