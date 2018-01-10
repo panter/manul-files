@@ -1,23 +1,34 @@
-import { useDeps, composeAll, composeWithTracker } from '@storybook/mantra-core';
+import { useDeps, composeAll } from '@storybook/mantra-core';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { composeWithTracker } from './composeWithTracker';
 
 export const depsMapper = context => ({
-  context: () => context,
+  context: () => context
 });
 
 export const composer = (
-  { context, uploader, alertsNamespace = 'upload', onUploadError = _.noop, onUploadSuccess = _.noop }
-  , onData) => {
+  {
+    context,
+    uploader,
+    alertsNamespace = 'upload',
+    onUploadError = _.noop,
+    onUploadSuccess = _.noop
+  },
+  onData
+) => {
   const { Alerts } = context();
   const getUploadCallback = (file, callback) => {
     // check if Alerts has support for handleCallback
     if (Alerts && Alerts.handleCallback) {
-      return Alerts.handleCallback(alertsNamespace, {
-        props: () => ({ file }),
-      },
-        callback,
+      return Alerts.handleCallback(
+        alertsNamespace,
+        {
+          props: () => ({ file })
+        },
+        callback
       );
     }
     // legacy
@@ -33,14 +44,16 @@ export const composer = (
   const upload = (file, callback) => {
     uploader.send(file, getUploadCallback(file, callback));
   };
-  const progressDecimal = !_.isNaN(uploader.progress()) ? uploader.progress() : 0;
+  const progressDecimal = !_.isNaN(uploader.progress())
+    ? uploader.progress()
+    : 0;
   const progress = Math.round(progressDecimal * 100);
   const status = uploader.status();
   // we use showFileError in FileField to indicate files that were already rejected by the dropzone
   onData(null, { upload, progress, status });
 };
 
-export const composeWithUploader = () => (C) => {
+export const composeWithUploader = () => C => {
   const WithUploader = class extends React.Component {
     constructor(props, { uniforms } = {}) {
       super(props);
@@ -54,11 +67,14 @@ export const composeWithUploader = () => (C) => {
       // it can be a function and will be called with props and the uniforms' context
       // if embedded on a fileField
       // see collections/companies for an example
-      const metaContext = _.isFunction(props.metaContext) ?
-        props.metaContext(props, uniforms) :
-        props.metaContext;
+      const metaContext = _.isFunction(props.metaContext)
+        ? props.metaContext(props, uniforms)
+        : props.metaContext;
 
-      this.uploader = uploadService.createUploader(props.directiveName, metaContext);
+      this.uploader = uploadService.createUploader(
+        props.directiveName,
+        metaContext
+      );
     }
     render() {
       const props = this.props;
@@ -76,7 +92,7 @@ export const composeWithUploader = () => (C) => {
     }
   };
   WithUploader.contextTypes = {
-    uniforms: PropTypes.object,
+    uniforms: PropTypes.object
   };
 
   WithUploader.displayName = `withUploader(${C.displayName})`;
@@ -84,8 +100,4 @@ export const composeWithUploader = () => (C) => {
   return WithUploader;
 };
 
-
-export default C => composeAll(
-  composeWithUploader(),
-  useDeps(depsMapper),
-)(C);
+export default C => composeAll(composeWithUploader(), useDeps(depsMapper))(C);
