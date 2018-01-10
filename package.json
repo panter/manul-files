@@ -1,7 +1,7 @@
 {
   "name": "@panter/manul-files",
   "description": "",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "author": {
     "name": "Marco Wettstein",
     "email": "maw@panter.ch",
@@ -14,11 +14,10 @@
   },
   "bugs": "https://github.com/panter/manul-files/issues",
   "peerDependencies": {
-    "babel-runtime": "*.*.*",
-    "lodash": "^4.0.0",
-    "@storybook/mantra-core": "*.*.*",
-    "react": "16.0.0",
-    "prop-types": "15.6.0"
+    "babel-runtime": "*",
+    "lodash": "*",
+    "@storybook/mantra-core": "*",
+    "react": "*"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
@@ -37,11 +36,10 @@
     "eslint-plugin-react": "^6.8.0",
     "glob": "^5.0.15",
     "tape": "^4.2.2",
-    "babel-runtime": "*.*.*",
+    "babel-runtime": "*",
     "lodash": "^4.0.0",
-    "@storybook/mantra-core": "*.*.*",
-    "react": "16.0.0",
-    "prop-types": "15.6.0"
+    "@storybook/mantra-core": "*",
+    "react": "^16.0.0"
   },
   "scripts": {
     "prepublish": "npm run compile",
@@ -51,6 +49,7 @@
   },
   "main": "./dist/index.js",
   "dependencies": {
+    "prop-types": "^15.6.0",
     "blueimp-canvas-to-blob": "^3.6.0"
   }
 }
